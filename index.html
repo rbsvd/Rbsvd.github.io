@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dadi Rohith Balaram Sai Venkat | Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <img src="assets/images/profile.jpg" alt="Profile Picture" width="120" style="border-radius:50%; margin-bottom:10px;">
+    <h1>Dadi Rohith Balaram Sai Venkat</h1>
+    <p>Data Science & AI Enthusiast | Machine Learning | NLP | Computer Vision | Generative AI</p>
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- About Section -->
+<section id="about">
+    <h2>About Me</h2>
+    <p>Innovative and results-driven Data Science & Analytics professional with expertise in ML, AI, NLP, Computer Vision, and LLMs. Passionate about leveraging AI to solve complex problems.</p>
+    <ul>
+        <li>Python, SQL, C</li>
+        <li>PyTorch, TensorFlow, Keras</li>
+        <li>PostgreSQL, MySQL, Flask API</li>
+        <li>Power BI, Tableau, Data Visualization</li>
+    </ul>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <h2>Featured Projects</h2>
+    <div id="github-projects"></div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skill">
+        <p>Python</p>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="95%"></div></div>
+    </div>
+    <div class="skill">
+        <p>Machine Learning</p>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="90%"></div></div>
+    </div>
+    <div class="skill">
+        <p>Deep Learning</p>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="85%"></div></div>
+    </div>
+    <div class="skill">
+        <p>Data Visualization</p>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="80%"></div></div>
+    </div>
+</section>
+
+<!-- Certifications Section -->
+<section id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+        <li>Oracle Cloud Infrastructure 2025 Certified Data Science Professional</li>
+        <li>Google Advanced Data Analytics Specialization</li>
+        <li>Microsoft Certified: Azure Fundamentals</li>
+        <li>Forage BCG Data Science Job Simulation</li>
+        <!-- Add all your certifications -->
+    </ul>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Contact Me</h2>
+    <form action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Dadi Rohith Balaram Sai Venkat | <a href="assets/resume.pdf" target="_blank">Download Resume</a></p>
+</footer>
+
+<!-- Scripts -->
+<script>
+    // Skill Bar Animation
+    document.addEventListener('DOMContentLoaded', () => {
+        const bars = document.querySelectorAll('.skill-bar-inner');
+        bars.forEach(bar => {
+            const skillValue = bar.getAttribute('data-skill');
+            setTimeout(() => { bar.style.width = skillValue; }, 500);
+        });
+    });
+
+    // GitHub Repo Auto-Fetch
+    const githubUsername = "rbsvd"; // Your GitHub username
+    const projectsContainer = document.getElementById('github-projects');
+    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`)
+        .then(response => response.json())
+        .then(repos => {
+            repos.forEach(repo => {
+                const repoDiv = document.createElement('div');
+                repoDiv.classList.add('project-card');
+                repoDiv.innerHTML = `
+                    <h3>${repo.name}</h3>
+                    <p>${repo.description ? repo.description : "No description provided."}</p>
+                    <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+                `;
+                projectsContainer.appendChild(repoDiv);
+            });
+        })
+        .catch(err => console.log('Error fetching GitHub repos:', err));
+</script>
+
+</body>
+</html>
